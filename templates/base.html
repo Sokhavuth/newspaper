@@ -9,19 +9,39 @@
     <link href="/static/styles/base.css" rel="stylesheet">
     <link href="/static/fonts/setup.css" rel='stylesheet'>
     <link href="/static/images/site_logo.png" rel="icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <body>
     <section id="header">
       <div class="date">
         {{ data['date'] }}
       </div>
-      <div id='blog-title'>{{data['site-title']}}</div>
+      <div id='blog-title'><a href="/">{{data['site-title']}}</a></div>
       <div class="search">
         <input type="text" placeholder="Search" /><input type="button" value="ស្វែង​រក" />
       </div>
     </section>
     <div class='menu-wrapper'>
-      <nav id="menu" class="menu region">menu</nav>
+      <nav id="menu" class="menu region">
+        <div class="topnav" id="myTopnav">
+          <a href="/" id="home" class="active"><img src="/static/images/house.png" /></a>
+          <a href="#news">ព័ត៌មាន</a>
+          <a href="#contact">ទំនាក់ទំនង</a>
+          <a href="#about">អំពី​យើង​ខ្ញុំ</a>
+          <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+          </a>
+      </nav>
+      <script>
+      function myFunction() {
+        var x = document.getElementById("myTopnav");
+        if (x.className === "topnav") {
+        x.className += " responsive";
+        } else {
+          x.className = "topnav";
+        }
+      }
+      </script>
     </div>
   </body>
 </html>
