@@ -18,3 +18,15 @@ a:hover{
 body{
   font: 14px/1.5 Vidaloka, OdorMeanChey;
 }
+#header{
+  background: #007cba;
+  color: white;
+}
+#blog-title{
+  text-align: center;
+  font: 50px/1.5 Anton, Moul;
+  padding: 20px;
+}
+.menu-wrapper{
+  background: #006ba1;
+}
