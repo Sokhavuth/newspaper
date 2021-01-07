@@ -9,7 +9,7 @@ class Postdb():
 
   def get_post(self):
     vdict = copy.deepcopy(config.vdict)
-    vlib = lib.Lib()
+    self.vlib = lib.Lib()
     query = {'key':vdict['api-key'], 'maxResults':12}
     response = requests.get('https://www.googleapis.com/blogger/v3/blogs/'+vdict['blog-id']+'/posts', params=query)
     json = response.json()
@@ -32,6 +32,7 @@ class Postdb():
       list.append((id, title, content, date, url, author))
 
     vdict['posts'] = list
-    vdict['thumbs'] = vlib.get_thumbs(list, 2)
+    vdict['thumbs'] = self.vlib.get_thumbs(list, 2)
+    vdict['date'] = self.vlib.set_date()
 
     return vdict
