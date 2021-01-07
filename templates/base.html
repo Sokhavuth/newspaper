@@ -17,8 +17,10 @@
         {{ data['date'] }}
       </div>
       <div id='blog-title'><a href="/">{{data['site-title']}}</a></div>
-      <div class="search">
+      <div class="search-wrapper">
+        <div class="search">
         <input type="text" placeholder="Search" /><input type="button" value="ស្វែង​រក" />
+        </div>
       </div>
     </section>
     <div class='menu-wrapper'>
@@ -28,12 +30,12 @@
           <a href="#news">ព័ត៌មាន</a>
           <a href="#contact">ទំនាក់ទំនង</a>
           <a href="#about">អំពី​យើង​ខ្ញុំ</a>
-          <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+          <a href="javascript:void(0);" class="icon" onclick="mobileMenu()">
             <i class="fa fa-bars"></i>
           </a>
       </nav>
       <script>
-      function myFunction() {
+      function mobileMenu() {
         var x = document.getElementById("myTopnav");
         if (x.className === "topnav") {
         x.className += " responsive";
