@@ -58,10 +58,14 @@ body{
 }
 .menu-wrapper{
   background: #006ba1;
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+  z-index: 999;
 }
 #menu #home{
   padding-top: 5px;
-  padding-bottom: 0;
+  padding-bottom: 2px;
 }
 #menu #home img{
   height: 30px;
@@ -86,6 +90,10 @@ body{
 }
 .topnav .icon {
   display: none;
+}
+#footer{
+  text-align: center;
+  padding: 30px;
 }
 
 @media only screen and (max-width: 600px){

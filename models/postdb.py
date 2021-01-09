@@ -1,23 +1,22 @@
 #models/post.py
-import config, copy, requests, lib
-from flask import render_template
+import config, copy, requests, lib, json
+from flask import render_template, session
 from flask_classful import FlaskView, route
 
 class Postdb():
-  def __init__(self):
-    self.get_post()
 
-  def get_post(self):
+  def get_post(self, token=''):
     vdict = copy.deepcopy(config.vdict)
     self.vlib = lib.Lib()
-    query = {'key':vdict['api-key'], 'maxResults':12}
+
+    query = {'key':vdict['api-key'], 'maxResults':5}
+    if token:
+      query['pageToken'] = token
+
     response = requests.get('https://www.googleapis.com/blogger/v3/blogs/'+vdict['blog-id']+'/posts', params=query)
     json = response.json()
 
-    vdict['nextPageToken'] = json['nextPageToken']
-    if 'prevPageToken' in json:
-      vdict['prevPageToken'] = json['prevPageToken']
-
+    vdict['pageToken'] = json['nextPageToken']
     posts = json['items']
     list = []
 
@@ -25,11 +24,12 @@ class Postdb():
       id = post['id']
       title = post['title']
       content = post['content']
+      video = content.find('__video-id__')
       date = post['published']
       url = post['url']
       author = post['author']['displayName']
 
-      list.append((id, title, content, date, url, author))
+      list.append((id, title, content, date, url, author, video))
 
     vdict['posts'] = list
     vdict['thumbs'] = self.vlib.get_thumbs(list, 2)

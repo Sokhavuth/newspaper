@@ -10,3 +10,9 @@ class Index(FlaskView):
     self.postdb = Postdb()
     vdict = self.postdb.get_post()
     return render_template('index.html', data=vdict)
+
+  @route('/navigate/<token>/')
+  def navigate(self, token):
+    self.postdb = Postdb()
+    vdict = self.postdb.get_post(token)
+    return vdict

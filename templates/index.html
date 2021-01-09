@@ -1,2 +1,35 @@
 <!--templates/index.html-->
 {% extends "base.html" %}
+
+{% block head %}
+{{ super() }}
+<script src="/static/scripts/index.js"></script>
+<link href="/static/styles/index.css" rel="stylesheet">
+{% endblock %}
+
+{% block panel %}
+
+<div id="panel" class="panel region">
+  {% for v in range(data['posts']|length) %}
+  <div class="post-outer">
+    <div class="post">
+      <a href="/post/{{ data['posts'][v][0] }}/"><img src="{{ data['thumbs'][v] }}" /></a>
+      <a href="/post/{{ data['posts'][v][0] }}/"><p>{{ data['posts'][v][1] }}</p></a>
+      {% if data['posts'][v][6] != -1 %}
+      <a href="/post/{{ data['posts'][v][0] }}/"><img class="play-icon" src="/static/images/play.png" /></a>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+<div class="navigation region">
+  <script>
+    $(document).ready(function(){
+      (index.pageToken).append('{{ data["pageToken"] }}');
+    })
+  </script>
+  <img onclick="index.load_items('next')" src="/static/images/left.png" /> 
+  <img id="nav-home" onclick="index.load_items('home')" src="/static/images/home.png" /> 
+  <img onclick="index.load_items('previous')" src="/static/images/right.png" />
+</div>
+{% endblock %}
