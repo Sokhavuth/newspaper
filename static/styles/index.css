@@ -95,6 +95,7 @@
 #content #channel-wrapper{
   background: black;
   padding: 15px;
+  border-radius: 4px;
 }
 #content #channel{
   padding-top: 56.25%;
