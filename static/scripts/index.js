@@ -96,6 +96,15 @@ class Index{
     this.makeApiCall();
   }
 
+  toKhDate(date){
+    var dt = new Date(date);
+    var d = dt.getDate();
+    var m = dt.getMonth()+1;
+    var y = dt.getFullYear();
+    var khDate = d+'/'+m+'/'+y;
+    return khDate;
+  }
+
   listingPosts(){
     var html = '';
     
@@ -104,6 +113,7 @@ class Index{
       html += `<div class="post">`;
       html += `<a href="/post/${ index['postId'][v] }/"><img src="${ index['postThumb'][v] }" /></a>`;
       html += `<a href="/post/${ index['postId'][v] }/"><p>${ index['postTitle'][v] }</p></a>`;
+      html += `<span>${ this.toKhDate(new Date(index['postDate'][v])) }</span>`;
       if(index['video'][v] != -1){
         html += `<a href="/post/${ index['postId'][v] }/"><img class="play-icon" src="/static/images/play.png" /></a>`;
       }

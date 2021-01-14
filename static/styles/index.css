@@ -67,6 +67,11 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+#panel .post span{
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
 .navigation{
   text-align: center;
   width: 100%;
