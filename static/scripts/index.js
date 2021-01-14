@@ -8,7 +8,7 @@ class Index{
     this.label = false;
 
     this.kplaylistId = false;
-    this.ChannelId =  'UC7cyr5kbcN7jvG7No6lZ-wQ';
+    this.ChannelId =  'UC5BMQOsAB8hKUyHu9KI6yig';
     this.yt_nextPageToken = false;
     this.yt_prevPageToken = false;
     this.kclicked = false;
@@ -229,6 +229,7 @@ class Index{
     index.kplayer = new YT.Player('kvid-screen', {
       height: index.kplayerHeight,
       width: '100%',
+      height: '100%',
       playerVars: {
        showinfo: 1
       },

@@ -91,8 +91,19 @@
 }
 #content #channel{
   background: darkgrey;
-  padding:4.5% 2% 6px;
+  padding:30px 15px 6px;
   border-radius: 4px;
+}
+#content #channel #screen{
+  position: relative;
+  padding-top: 56.25%;
+}
+#content #channel #screen #kvid-screen{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 #kplaylistPanel{
   overflow:auto;
@@ -119,11 +130,15 @@
   border:1px solid white;
   float:left;
 }
+.kplaylistItem img:hover{
+  opacity: .7;
+}
 .klabel{
   color:white;
 }
 #kdownloadButton{
   text-align: center;
+  padding: 5px 0 0;
 }
 #kdownloadButton input{
   text-align:center;
