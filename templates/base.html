@@ -11,6 +11,7 @@
     <link href="/static/fonts/setup.css" rel='stylesheet'>
     <link href="/static/images/site_logo.png" rel="icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src='https://apis.google.com/js/api.js'></script>
     {% endblock %}
   </head>
   <body>
@@ -55,9 +56,15 @@
     {% endblock %}
 
     {% block main %}
-    <div id="main">
-      {% block content %}{% endblock %}
-      {% block sidebar %}{% endblock %}
+    <div id="main" class="main region">
+      {% block content %}
+      
+      {% endblock %}
+      {% block sidebar %}
+      <div id="sidebar">
+        <!--<img src="https://1.bp.blogspot.com/-_nwuuthD5Rw/X_65AHQEQtI/AAAAAAABrnI/gV2Hy8TkVoMDfDkaOhl3d6O8mPvZ2WW9QCLcBGAsYHQ/s0/300x600.jpg" />-->
+      </div>
+      {% endblock %}
     </div>
     {% endblock %}
 
