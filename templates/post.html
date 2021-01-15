@@ -21,14 +21,21 @@
 
 <div class="meta">
   <span class="author">អ្នក​ចុះ​ផ្សាយៈ {{ data['post']['author']['displayName'] }}</span>
-  <span class="date">
-    <script>
-      $('#content .date').append(post.toKhDate("{{ data['post']['published'] }}"));
-    </script>
-  </span>
+  <span class="date"></span>
 </div>
 
-<div class="post-content">{{ data['post']['content']|safe }}</div>
+<div id="__KBPlayer__">
+  <div id="post-content">{{ data['post']['content']|safe }}</div>
+</div>
+
+<script>
+  $('#content .date').append(post.toKhDate("{{ data['post']['published'] }}"));
+  var str = $('#post-content').html();
+  if(str.indexOf('__video-id__') != -1){
+    $('#__KBPlayer__').attr('id', "KBPlayer");
+    post.setPostVid('post-content')
+  }
+</script>
 {% endif %}
 
 <div style="margin-top:20px;" id="disqus_thread"></div>

@@ -1,7 +1,11 @@
 /* /static/styles/post.css */
+.ad{
+  padding:0;
+}
 .ad img{
   width: 100%;
   margin: 20px 0 0;
+  float: left;
 }
 #content{
   background: lavender;
@@ -16,11 +20,11 @@
 #content .meta .date{
   float: right;
 }
-#content .post-content{
+#content #post-content{
   font: 17px/1.75 Courgette, HandWriting;
   font-weight: 600;
   color: rgb(77, 77, 77)
 }
-#content .post-content img{
+#content #post-content img{
   width: 100%;
 }
