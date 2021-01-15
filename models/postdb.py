@@ -17,5 +17,6 @@ class Postdb():
     
     self.vlib = lib.Lib()
     vdict['date'] = self.vlib.set_date()
+    vdict['id'] = id
     
     return vdict

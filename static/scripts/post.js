@@ -1,5 +1,10 @@
 // static/scripts/post.js
 class Post{
+  constructor(){
+    this.apiKey = 'AIzaSyCDMr6toQGyDRFPChRsbQ2sheSQfTQLVqg';
+    this.blogId = '3212243556817590089';
+  }
+
   toKhDate(date){
     var dt = new Date(date);
     var d = dt.getDate();
@@ -12,6 +17,7 @@ class Post{
   setPostVid(eleId){
     var playlist = document.createElement( 'div' );
     var description = document.createElement( 'div');
+    description.className = 'description';
     var post = document.getElementById(eleId);
     var kbplayer = document.getElementById("KBPlayer");
   
@@ -62,33 +68,18 @@ class Post{
     }
     
     else{
-      var postContent = '<iframe id="player" src="'+iframeSrc+'" width="100%" heigh="150" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen SCROLLING=NO ></iframe>';
+      var postContent = '<div id="player-outer"><iframe id="player" src="'+iframeSrc+'" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen scrolling=NO ></iframe></div';
     }
    
     post.innerHTML = postContent;
 
     var Player = post.getElementsByTagName('iframe');
    
-    if(str.indexOf('facebookvids') != -1){
-      var vidWidth = post.getElementsByTagName('p');
-      var Player = post.getElementsByTagName('div');
-      Player[0].setAttribute("data-width", vidWidth[0].clientWidth);
-    }
-    else{
+    if(str.indexOf('facebookvid') == -1){
       var vidWidth = Player[0].clientWidth;
       Player[0].height = vidWidth / 16 * 9;
-    } 
-   /*
-    str = playlist.innerHTML;
-    if(str.indexOf('pl') != -1){
-      var startIndex = str.indexOf('[');
-      var endIndex = str.indexOf(']');
-      this.pl = str.slice(startIndex+1,endIndex);
-     
-      var relatedPostUrl = "https://www.googleapis.com/blogger/v3/blogs/"+KNclass.blogId+"/posts?maxResults=300&labels="+this.pl+"&callback=POST.getRelatedPost&key="+KNclass.apiKey;
-      $.getScript(relatedPostUrl);
-    }   
-    */
+    }
+    
   }
     
 }//end class
