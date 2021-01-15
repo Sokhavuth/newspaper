@@ -10,3 +10,9 @@ class Index(FlaskView):
     self.postdb = Postdb()
     vdict = self.postdb.get_post()
     return render_template('index.html', data=vdict)
+
+  @route('/post/<id>/')
+  def get_single_post(self, id):
+    self.postdb = Postdb()
+    vdict = self.postdb.get_post(id)
+    return render_template('post.html', data=vdict)

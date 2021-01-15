@@ -1,0 +1,26 @@
+/* /static/styles/post.css */
+.ad img{
+  width: 100%;
+  margin: 20px 0 0;
+}
+#content{
+  background: lavender;
+  padding: 20px;
+}
+#content .post-title{
+  font: 22px/1.5 Oswald, Limonf3;
+}
+#content .meta{
+  margin: 20px 0;
+}
+#content .meta .date{
+  float: right;
+}
+#content .post-content{
+  font: 17px/1.75 Courgette, HandWriting;
+  font-weight: 600;
+  color: rgb(77, 77, 77)
+}
+#content .post-content img{
+  width: 100%;
+}
