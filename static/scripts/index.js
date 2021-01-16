@@ -265,11 +265,15 @@ class Index{
     index.kplayer.loadPlaylist(playList);
   }
 
-  nextPageKD() {
+  nextPageKD(){
     index.requestPlaylists(index.ChannelId, index.yt_nextPageToken);
   }
+
+  home(){
+    index.requestPlaylists(index.ChannelId);
+  }
   
-  previousPageKD() {
+  previousPageKD(){
     index.requestPlaylists(index.ChannelId, index.yt_prevPageToken);
   }
   

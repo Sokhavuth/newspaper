@@ -1,10 +1,5 @@
 // static/scripts/post.js
 class Post{
-  constructor(){
-    this.apiKey = 'AIzaSyCDMr6toQGyDRFPChRsbQ2sheSQfTQLVqg';
-    this.blogId = '3212243556817590089';
-  }
-
   toKhDate(date){
     var dt = new Date(date);
     var d = dt.getDate();
