@@ -16,3 +16,7 @@ class Index(FlaskView):
     self.postdb = Postdb()
     vdict = self.postdb.get_post(id)
     return render_template('post.html', data=vdict)
+
+  @route('/category/<cat>/')
+  def get_post_category(self, cat):
+    return "Category"

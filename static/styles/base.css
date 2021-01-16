@@ -84,6 +84,7 @@ body{
 }
 .topnav a:hover{
   background: #005a87;
+  cursor: pointer;
 }
 .topnav a.active {
   background-color:#005a87;

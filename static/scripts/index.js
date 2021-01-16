@@ -27,12 +27,12 @@ class Index{
   makeApiCall(){
     $('#nav-home').attr('src', '/static/images/loading.gif');
     gapi.client.load('blogger', 'v3', function(){
-      var labels = index.label ? 'labels='+index.label:'';
+      var labels = index.label ? 'labels='+index.label+'&':'';
       var maxResults = index.maxResult ? 'maxResults='+index.maxResult:'';
       var myPageToken = index.pageToken ? 'pageToken='+index.pageToken:'';
       var blogId = index.blogId;
       
-      var requestPath = 'https://www.googleapis.com/blogger/v3/blogs/'+blogId+'/posts?'+labels+'&'+maxResults+'&'+myPageToken;
+      var requestPath = 'https://www.googleapis.com/blogger/v3/blogs/'+blogId+'/posts?'+labels+maxResults+'&'+myPageToken;
       
       var request = gapi.client.request({
         'path': requestPath ,
@@ -58,6 +58,13 @@ class Index{
     else{
       return ("/static/images/no-image.png");
     }
+  }
+
+  getPostCat(label, id){
+    index.label = label;
+    $('.active').removeClass();
+    $('#'+id).addClass('active'); 
+    index.makeApiCall();
   }
 
   getPostAPI(json){
