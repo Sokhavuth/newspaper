@@ -5,7 +5,7 @@ from flask_classful import FlaskView, route
 
 class Postdb():
 
-  def get_post(self, id=''):
+  def get_post(self, id='', cat=''):
     vdict = copy.deepcopy(config.vdict)
 
     if id:
@@ -14,9 +14,12 @@ class Postdb():
       r = requests.get(url = URL, params = PARAMS)
       data = r.json() 
       vdict['post'] = data
+      vdict['id'] = id
+    elif cat:
+      vdict['cat'] = cat
+      print(vdict['cat'])
     
     self.vlib = lib.Lib()
     vdict['date'] = self.vlib.set_date()
-    vdict['id'] = id
     
     return vdict

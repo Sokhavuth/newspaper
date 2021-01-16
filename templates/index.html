@@ -8,6 +8,11 @@
 {% endblock %}
 
 {% block panel %}
+{% if 'cat' in data %}
+<script>
+  index.label = '{{ data["cat"] }}';
+</script>
+{% endif %}
 <div id="panel" class="panel region"></div>
 <div class="navigation region">
   <img onclick="index.navPrevious()" src="/static/images/left.png" /> 

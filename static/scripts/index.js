@@ -60,13 +60,6 @@ class Index{
     }
   }
 
-  getPostCat(label, id){
-    index.label = label;
-    $('.active').removeClass();
-    $('#'+id).addClass('active'); 
-    index.makeApiCall();
-  }
-
   getPostAPI(json){
     this.postUrl = [];
     this.postTitle = [];
