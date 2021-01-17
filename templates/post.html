@@ -29,6 +29,8 @@
 </div>
 
 <script>
+  var POSTID = '{{ data["id"] }}';
+  
   $('#content .date').append(post.toKhDate("{{ data['post']['published'] }}"));
   var str = $('#post-content').html();
   if(str.indexOf('__video-id__') != -1){

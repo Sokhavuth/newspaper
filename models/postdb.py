@@ -17,7 +17,6 @@ class Postdb():
       vdict['id'] = id
     elif cat:
       vdict['cat'] = cat
-      print(vdict['cat'])
     
     self.vlib = lib.Lib()
     vdict['date'] = self.vlib.set_date()

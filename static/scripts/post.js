@@ -1,5 +1,9 @@
 // static/scripts/post.js
 class Post{
+  constructor(){
+    this.blogId = '3212243556817590089';
+  }
+
   toKhDate(date){
     var dt = new Date(date);
     var d = dt.getDate();
@@ -75,7 +79,138 @@ class Post{
       Player[0].height = vidWidth / 16 * 9;
     }
     
+    str = playlist.innerHTML;
+    if(str.indexOf('pl') != -1){
+      var startIndex = str.indexOf('[');
+      var endIndex = str.indexOf(']');
+      this.pl = str.slice(startIndex+1,endIndex);
+     
+      var relatedPostUrl = 'https://www.blogger.com/feeds/'+this.blogId+'/posts/default/-/'+this.pl+'?alt=json-in-script&callback=post.getPlaylist&max-results=150&start-index=1';
+      $.getScript(relatedPostUrl);   
+    }
   }
+
+  getPlaylist(json){
+    this.getPost(json);
+
+    var html = '';
+    var focusPart = '';
+
+    html = ('<div id="relatedPosts" >');
+    for(var i=0;i<this.postList.length; i++){
+      html += ('<div class="div-part" id="Part'+i+'" >');
+      html += ('<a class="thumb" href="/post/'+this.postId[i]+'/">');
+      html += ('<img  src="'+this.postThumb[i]+'" />');
+      html += ('</a>');
+      html += ('<a class="vid-title" href="/post/'+this.postId[i]+'/">'+this.postTitle[i]+'</a>');
+      html += ('</div>');
+      if(this.postId[i] == POSTID){
+        focusPart = 'Part'+i;
+      } 
+    }  
+    html += ('</div>');
+  
+    $('#KBPlayer').append(html);
+
+    $('#'+focusPart).css('background-color', '#282828');
+    $('#'+focusPart+' .vid-title').css('color', 'orange');
+
+
+    var container = $('#relatedPosts');
+    var element = $('#'+focusPart);
+
+    container.animate({
+      scrollTop: container.scrollTop = container.scrollTop() + element.offset().top - container.offset().top
+    }, {
+      duration: 1000,
+      specialEasing: {
+        width: 'linear',
+        height: 'easeOutBounce'
+      },
+      complete: function (e) {
+        //console.log("animation completed");
+      }
+    });
+  }
+
+  getPost(json){
+    this.postUrl = [];
+    this.postTitle = [];
+    this.postThumb = [];
+    this.postDate = [];
+    this.postContentSum = [];
+    this.postId = [];
+    this.postIframeSrc = [];
+    this.postData = [];
+  
+    var postList = json.feed.entry;
+  
+    this.totalPost = json.feed.openSearch$totalResults.$t;
+    this.postList = postList;
+    for(var i =0; i<postList.length; i++){
+      for (var j = 0; j < postList[i].link.length; j++) {
+        if (postList[i].link[j].rel == 'alternate') {
+          this.postUrl.push(postList[i].link[j].href);
+          break;
+        }
+      }
+      var postContent = postList[i].content.$t;
+      this.postData.push(postContent);
+      var index = (this.postList[i].id.$t).indexOf("post");
+      var postId = (this.postList[i].id.$t).slice(index+5);
+      this.postId.push(postId);
+      this.postContentSum.push(this.removeHtmlTag(postContent));
+      this.postTitle.push(postList[i].title.$t);
+      this.postThumb.push(this.createThumb(postContent));
+      this.postIframeSrc.push(this.iframeSrc);
+      this.postDate.push(postList[i].published.$t);
+    }
+  }
+
+  createThumb(postContent){
+    var div = document.createElement( 'div' );
+    div.innerHTML = postContent;
+    var img = div.getElementsByTagName("img");
+    
+    if(img.length>=1) {
+      return img[0].src;
+    }
+    else{
+      return ("/static/images/no-image.png");
+    }
+  }
+
+  removeHtmlTag(strx){
+    var div = document.createElement( 'div' );
+    div.innerHTML = strx;
+    var tempDiv = div.getElementsByTagName("div");
+    for(var i=0; i<tempDiv.length; i++){
+      if(tempDiv[i].id=="__video-id__"){
+        tempDiv[i].innerHTML = "";
+      }
+      if(tempDiv[i].id=="__playlist__"){
+        tempDiv[i].innerHTML = "";
+      }
+    }
+  
+    strx = div.innerHTML;
+  
+    var chop = this.postSum;
+    if(strx.indexOf("<")!=-1){
+      var s = strx.split("<");
+      for(var i=0;i<s.length;i++){
+        if(s[i].indexOf(">")!=-1){
+          s[i] = s[i].substring(s[i].indexOf(">")+1,s[i].length);
+      }
+    }
+    strx = s.join("");
+    }
+    chop = (chop < strx.length-1) ? chop : strx.length-1;
+    while(strx.charAt(chop-1)!=' ' && strx.indexOf(' ',chop)!=-1) 
+      chop++;
+    strx = strx.substring(0,chop-1);
+    return strx+'...';
+  }  
     
 }//end class
 

@@ -43,3 +43,41 @@
   width: 100%;
   height: 100%;
 }
+#KBPlayer{
+  background:black;
+  text-align:left;
+}
+#relatedPosts{
+  background:#404040;
+  max-height:435px;
+  overflow:auto;
+}
+#relatedPosts .div-part{
+  display: grid;
+  grid-template-columns: 150px auto;
+  grid-gap: 10px;
+  align-items: center;
+  padding: 10px;
+  height: auto;
+  border-top: 2px solid grey;
+}
+#relatedPosts .div-part .thumb{
+  display: block;
+  position: relative;
+  padding-top: 56.25%;
+  overflow: hidden;
+  border: 1px solid lightgrey;
+  border-radius: 2px;
+}
+#relatedPosts .div-part .thumb img{
+  width: 100%;
+  min-height: 100%;
+  float: left;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+#relatedPosts .div-part a{
+  color: white;
+  font-size: 16px;
+}
