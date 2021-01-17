@@ -45,7 +45,8 @@
 }
 #KBPlayer{
   background:black;
-  text-align:left;
+  padding: 30px 15px;
+  border-radius: 4px;
 }
 #relatedPosts{
   background:#404040;
