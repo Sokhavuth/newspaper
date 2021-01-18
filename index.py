@@ -2,6 +2,7 @@
 from flask import render_template
 from flask_classful import FlaskView, route
 from models.postdb import Postdb
+from models.pagedb import Pagedb
   
 class Index(FlaskView):
   
@@ -16,6 +17,12 @@ class Index(FlaskView):
     self.postdb = Postdb()
     vdict = self.postdb.get_post(id)
     return render_template('post.html', data=vdict)
+
+  @route('/page/<id>/')
+  def get_single_page(self, id):
+    self.pagedb = Pagedb()
+    vdict = self.pagedb.get_page(id)
+    return render_template('page.html', data=vdict)
 
   @route('/category/<cat>/')
   def get_post_category(self, cat):

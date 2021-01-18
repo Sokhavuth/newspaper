@@ -1,0 +1,46 @@
+<!--templates/page.html-->
+{% extends "base.html" %}
+
+{% block head %}
+{{ super() }}
+<script src="/static/scripts/page.js"></script>
+<link href="/static/styles/page.css" rel="stylesheet">
+{% endblock %}
+
+{% block ad %}
+<div class="ad region">
+  <img src="/static/images/ad.jpg" />
+</div>
+<div style="clear: both;"></div>
+{% endblock %}
+
+{% block content %}
+<div id='content'>
+{% if 'page' in data %}
+<h3 class="page-title">{{ data['page']['title'] }}</h3>  
+
+<div class="meta">
+  <span class="author">​ចុះ​ផ្សាយ​ដោយៈ {{ data['page']['author']['displayName'] }}</span>
+  <span class="date"></span>
+</div>
+
+<div id="page-content">{{ data['page']['content']|safe }}</div>
+
+<script>
+  $('#content .date').append(page.toKhDate("{{ data['page']['published'] }}"));
+</script>
+{% endif %}
+
+<div style="margin-top:20px;" id="disqus_thread"></div>
+<script>
+  (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://khmerweb.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+</div>
+{%  endblock %}

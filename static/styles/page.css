@@ -1,0 +1,34 @@
+/* /static/styles/page.css */
+.ad{
+  padding:0;
+}
+.ad img{
+  width: 100%;
+  margin: 20px 0 0;
+  float: left;
+}
+#content{
+  background: lavender;
+  padding: 20px;
+}
+#content .page-title{
+  font: 22px/1.5 Oswald, Limonf3;
+}
+#content .meta{
+  margin: 20px 0;
+}
+#content .meta .date{
+  float: right;
+}
+#content #page-content,
+#content .description{
+  font: 17px/1.75 Courgette, HandWriting;
+  font-weight: 600;
+  color: rgb(77, 77, 77)
+}
+#content #page-content img{
+  width: 100%;
+}
+#content .description{
+  margin-top: 10px;
+}
