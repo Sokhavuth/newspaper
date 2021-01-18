@@ -50,7 +50,7 @@
 }
 #relatedPosts{
   background:#404040;
-  max-height:435px;
+  max-height:390px;
   overflow:auto;
 }
 #relatedPosts .div-part{
@@ -58,7 +58,7 @@
   grid-template-columns: 150px auto;
   grid-gap: 10px;
   align-items: center;
-  padding: 10px;
+  padding: 5px;
   height: auto;
   border-top: 2px solid grey;
 }
@@ -67,7 +67,6 @@
   position: relative;
   padding-top: 56.25%;
   overflow: hidden;
-  border: 1px solid lightgrey;
   border-radius: 2px;
 }
 #relatedPosts .div-part .thumb img{

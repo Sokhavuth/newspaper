@@ -2,6 +2,7 @@
 class Post{
   constructor(){
     this.blogId = '3212243556817590089';
+    this.postSumNum = 100;
   }
 
   toKhDate(date){
@@ -29,56 +30,26 @@ class Post{
     var endIndex = str.indexOf('}');
     var vidId = str.slice(startIndex+1,endIndex);
 
-    if(str.indexOf('googledrive') != -1){
+    if(str.indexOf('googledrive') != -1)
       var iframeSrc = 'https://docs.google.com/file/d/'+vidId+'/preview';
-
-    }
-  
-    else if(str.indexOf('youtube') != -1){
+    else if(str.indexOf('youtube') != -1)
       var iframeSrc = '//www.youtube.com/embed/'+vidId;
-
-    }
-
-    else if(str.indexOf('facebookvid') != -1){
+    else if(str.indexOf('facebookvid') != -1)
       var iframeSrc = 'https://www.facebook.com/watch/?v='+vidId;
-    
-    }
-
-    else if(str.indexOf('dailymotion') != -1){
+    else if(str.indexOf('dailymotion') != -1)
       var iframeSrc = '//www.dailymotion.com/embed/video/'+vidId+'?logo=0&info=0';
-
-    }
-
-    else if(str.indexOf('vimeo') != -1){
+    else if(str.indexOf('vimeo') != -1)
       var iframeSrc = '//player.vimeo.com/video/'+vidId;
-
-    }
-
-    else if(str.indexOf('ok') != -1){
+    else if(str.indexOf('ok') != -1)
       var iframeSrc = '//ok.ru/videoembed/'+vidId;
 
-    }
-
-
-    if(str.indexOf('facebookvid') != -1){
-      var postContent = '<p width="100%" id="fb-outer">';
-      postContent += '<div class="fb-video" data-width="auto" data-autoplay="false" data-allowfullscreen="true" data-href="'+iframeSrc+'"></div>';
-      postContent += '</p>'; 
-    }
-    
-    else{
+    if(str.indexOf('facebookvid') != -1)
+      var postContent = '<div class="fb-video" data-width="auto" data-autoplay="false" data-allowfullscreen="true" data-href="'+iframeSrc+'"></div>';
+    else
       var postContent = '<div id="player-outer"><iframe id="player" src="'+iframeSrc+'" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen scrolling=NO ></iframe></div';
-    }
    
     post.innerHTML = postContent;
 
-    var Player = post.getElementsByTagName('iframe');
-   
-    if(str.indexOf('facebookvid') == -1){
-      var vidWidth = Player[0].clientWidth;
-      Player[0].height = vidWidth / 16 * 9;
-    }
-    
     str = playlist.innerHTML;
     if(str.indexOf('pl') != -1){
       var startIndex = str.indexOf('[');
@@ -100,7 +71,7 @@ class Post{
     for(var i=0;i<this.postList.length; i++){
       html += ('<div class="div-part" id="Part'+i+'" >');
       html += ('<a class="thumb" href="/post/'+this.postId[i]+'/">');
-      html += ('<img  src="'+this.postThumb[i]+'" />');
+      html += ('<img  src="/static/images/playlist.jpg" />');
       html += ('</a>');
       html += ('<a class="vid-title" href="/post/'+this.postId[i]+'/">'+this.postTitle[i]+'</a>');
       html += ('</div>');
@@ -114,7 +85,6 @@ class Post{
 
     $('#'+focusPart).css('background-color', '#282828');
     $('#'+focusPart+' .vid-title').css('color', 'orange');
-
 
     var container = $('#relatedPosts');
     var element = $('#'+focusPart);
@@ -140,7 +110,6 @@ class Post{
     this.postDate = [];
     this.postContentSum = [];
     this.postId = [];
-    this.postIframeSrc = [];
     this.postData = [];
   
     var postList = json.feed.entry;
@@ -162,7 +131,6 @@ class Post{
       this.postContentSum.push(this.removeHtmlTag(postContent));
       this.postTitle.push(postList[i].title.$t);
       this.postThumb.push(this.createThumb(postContent));
-      this.postIframeSrc.push(this.iframeSrc);
       this.postDate.push(postList[i].published.$t);
     }
   }
@@ -183,19 +151,9 @@ class Post{
   removeHtmlTag(strx){
     var div = document.createElement( 'div' );
     div.innerHTML = strx;
-    var tempDiv = div.getElementsByTagName("div");
-    for(var i=0; i<tempDiv.length; i++){
-      if(tempDiv[i].id=="__video-id__"){
-        tempDiv[i].innerHTML = "";
-      }
-      if(tempDiv[i].id=="__playlist__"){
-        tempDiv[i].innerHTML = "";
-      }
-    }
-  
     strx = div.innerHTML;
   
-    var chop = this.postSum;
+    var chop = this.postSumNum;
     if(strx.indexOf("<")!=-1){
       var s = strx.split("<");
       for(var i=0;i<s.length;i++){
