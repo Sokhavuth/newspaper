@@ -34,6 +34,8 @@ class Post{
       var iframeSrc = 'https://docs.google.com/file/d/'+vidId+'/preview';
     else if(str.indexOf('youtube') != -1)
       var iframeSrc = '//www.youtube.com/embed/'+vidId;
+    else if(str.indexOf('ytpl') != -1)
+      var iframeSrc = 'https://www.youtube.com/embed/videoseries?list='+vidId;
     else if(str.indexOf('facebookvid') != -1)
       var iframeSrc = 'https://www.facebook.com/watch/?v='+vidId;
     else if(str.indexOf('dailymotion') != -1)
