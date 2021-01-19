@@ -3,7 +3,6 @@
 
 {% block head %}
 {{ super() }}
-<script src="/static/scripts/search.js"></script>
 <link href="/static/styles/search.css" rel="stylesheet">
 {% endblock %}
 
@@ -18,14 +17,13 @@
 <div id='content'>
 <h2 class="search-title">លទ្ធផល​នៃ​ការស្វែង​រកៈ</h2>  
 
-{% if 'q' in data %}
-<script>
-  search.q = '{{ data["q"] }}';
-  gapi.load('client', initAPI);
-</script>
+{% if 'posts' in data %}
+<ul id="search-result">
+{% for post in data['posts'] %}
+<li><a href="/post/{{ post['id'] }}/">{{ post['title'] }}</a></li>
+{% endfor %}
 {% endif %}
-
-<ul id="search-result"></ul>
+</ul>
 
 </div>
 {%  endblock %}

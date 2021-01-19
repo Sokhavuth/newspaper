@@ -18,7 +18,12 @@ class Postdb():
     elif cat:
       vdict['cat'] = cat
     elif q:
-      vdict['q'] = q
+      URL = "https://www.googleapis.com/blogger/v3/blogs/"+vdict['blog-id']+"/posts/search"
+      PARAMS = {"key":vdict['api-key'], 'q':q , 'fetchBodies':False}
+      r = requests.get(url = URL, params = PARAMS)
+      data = r.json()
+      if 'items' in data: 
+        vdict['posts'] = data['items']
     
     self.vlib = lib.Lib()
     vdict['date'] = self.vlib.set_date()
