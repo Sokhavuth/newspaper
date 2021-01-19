@@ -12,7 +12,8 @@ class Pagedb():
       URL = "https://www.googleapis.com/blogger/v3/blogs/"+vdict['blog-id']+"/pages/"+id
       PARAMS = {"key":vdict['api-key']}
       r = requests.get(url = URL, params = PARAMS)
-      data = r.json() 
+      data = r.json()
+      print(data)
       vdict['page'] = data
       vdict['id'] = id
     
@@ -20,3 +21,4 @@ class Pagedb():
     vdict['date'] = self.vlib.set_date()
     
     return vdict
+     

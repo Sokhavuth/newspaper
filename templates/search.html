@@ -1,0 +1,31 @@
+<!--templates/search.html-->
+{% extends "base.html" %}
+
+{% block head %}
+{{ super() }}
+<script src="/static/scripts/search.js"></script>
+<link href="/static/styles/search.css" rel="stylesheet">
+{% endblock %}
+
+{% block ad %}
+<div class="ad region">
+  <img src="/static/images/ad.jpg" />
+</div>
+<div style="clear: both;"></div>
+{% endblock %}
+
+{% block content %}
+<div id='content'>
+<h2 class="search-title">លទ្ធផល​នៃ​ការស្វែង​រកៈ</h2>  
+
+{% if 'q' in data %}
+<script>
+  search.q = '{{ data["q"] }}';
+  gapi.load('client', initAPI);
+</script>
+{% endif %}
+
+<ul id="search-result"></ul>
+
+</div>
+{%  endblock %}

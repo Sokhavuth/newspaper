@@ -1,5 +1,5 @@
 // static/scripts/page.js
-class Post{
+class Page{
   
   toKhDate(date){
     var dt = new Date(date);
@@ -12,4 +12,4 @@ class Post{
 
 }//end class
 
-const page = new Post();
+const page = new Page();

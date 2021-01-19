@@ -6,6 +6,7 @@ class Index{
     this.blogId = '3212243556817590089';
     this.maxResult = 5;
     this.label = false;
+    this.q = false;
 
     this.kplaylistId = false;
     this.ChannelId =  'UC5BMQOsAB8hKUyHu9KI6yig';

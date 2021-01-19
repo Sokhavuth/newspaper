@@ -32,9 +32,10 @@
       </div>
       <div id='blog-title'><a href="/">{{data['site-title']}}</a></div>
       <div class="search-wrapper">
-        <div class="search">
-        <input type="text" placeholder="Search" /><input type="button" value="ស្វែង​រក" />
-        </div>
+        <form class="search" action="/search/" method='post'>
+          <input type="text" name="q" placeholder="Search" />
+          <input type="submit" value="ស្វែង​រក" />
+        </form>
       </div>
     </section>
     </div>

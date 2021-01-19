@@ -1,5 +1,5 @@
 #index.py
-from flask import render_template
+from flask import render_template, request
 from flask_classful import FlaskView, route
 from models.postdb import Postdb
 from models.pagedb import Pagedb
@@ -29,3 +29,10 @@ class Index(FlaskView):
     self.postdb = Postdb()
     vdict = self.postdb.get_post(cat=cat)
     return render_template('index.html', data=vdict)
+
+  @route('/search/', methods=['POST'])
+  def get_post_search(self):
+    self.postdb = Postdb()
+    q = request.form['q']
+    vdict = self.postdb.get_post(q=q)
+    return render_template('search.html', data=vdict)
